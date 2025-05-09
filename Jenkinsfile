@@ -47,7 +47,7 @@ pipeline {
             )
 
             gv.deployApp()
-            echo 'Deploying to ${inputVersion}'
+            echo "Deploying to ${inputVersion}"
           }
       }
      }
