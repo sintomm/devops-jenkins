@@ -1,5 +1,8 @@
 pipeline {
   agent any
+  environment {
+    NEW_VERSION = '1.1.1.1.1'
+  }
   parameters {
     choice(name: 'VERSION', choices: ['1.1', '1.2', '1.3'], description: "Choose yor version")
     booleanParam(name: 'runTest', defaultValue: true, description:"Uncheck if tests should be omitted")
