@@ -8,7 +8,6 @@ pipeline {
     booleanParam(name: 'runTest', defaultValue: true, description:"Uncheck if tests should be omitted")
   }
   stages {
-
       stage('init') {
         steps {
           script {
@@ -39,7 +38,16 @@ pipeline {
      stage('deploy') {
        steps {
           script {
+             def inputVersion =  input(
+                message: 'Select the environment to deploy',
+                ok: 'Done',
+                parameters: [
+                    choice(name: 'ENV', choices: ['DEV', 'STAGING', 'PRODUCTION'], description: 'Choose your version')
+                ]
+            )
+
             gv.deployApp()
+            echo 'Deploying to ${inputVersion}'
           }
       }
      }
