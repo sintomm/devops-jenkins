@@ -8,10 +8,20 @@ pipeline {
     booleanParam(name: 'runTest', defaultValue: true, description:"Uncheck if tests should be omitted")
   }
   stages {
+
+      stage('init') {
+        steps {
+          script {
+            gv = load "script.groovy"
+          }
+        }
+    }
+
     stage('build') {
       steps {
-        echo 'Building app..'
-        echo "Building version ${NEW_VERSION}"
+         script {
+            gv.buildApp()
+         }
       }
     }
      stage('test') {
@@ -21,12 +31,16 @@ pipeline {
         }
        }
        steps {
-        echo 'Testing app..'
+        script {
+          gv.testApp()
+        }
       }
     }
      stage('deploy') {
        steps {
-        echo 'Deploying app...'
+          script {
+            gv.deployApp()
+          }
       }
      }
   }
