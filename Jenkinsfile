@@ -38,7 +38,7 @@ pipeline {
      stage('deploy') {
        steps {
           script {
-             def inputVersion =  input(
+             input(
                 message: 'Select the environment to deploy',
                 ok: 'Done',
                 parameters: [
@@ -47,7 +47,7 @@ pipeline {
             )
 
             gv.deployApp()
-            echo "Deploying to ${inputVersion}"
+            echo "Deploying to ${ENV}"
           }
       }
      }
