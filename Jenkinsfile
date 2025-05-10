@@ -5,10 +5,13 @@ pipeline {
   }
 
   stages {
-    stage('init') {
-      script {
-        load gv = script.groovy
+    steps {
+      stage('init') {
+        script {
+          load gv = script.groovy
       }
+    }
+ 
     }
     stage('build jar') {
       steps {
