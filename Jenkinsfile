@@ -29,7 +29,7 @@ pipeline {
     stage('build image') {
        steps {
           script {
-            buildImage()
+            buildImage 'sintomdevopss/first-app:2.0'
         }
       }
     }
@@ -38,7 +38,6 @@ pipeline {
        steps {
           script {
             gv.deployApp()
-       
           }
       }
      }
